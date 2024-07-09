@@ -1,0 +1,20 @@
+# Files
+.vscode
+.DS_Store
+.eslintcache
+pail.car
+
+# Directories
+.nyc_output
+build
+coverage
+dist
+node_modules
+out
+logs
+vendor
+
+# Artifacts
+*.log
+*.tgz
+*.zip
