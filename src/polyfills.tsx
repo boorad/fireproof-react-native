@@ -1,7 +1,7 @@
-import { polyfillGlobal } from 'react-native/Libraries/Utilities/PolyfillFunctions';
+import { polyfillGlobal } from './PolyfillFunctions';
 
 // React-Native polyfills for Fireproof
-const log = (polyfill) => {
+const log = (polyfill: string) => {
   console.info(`@fireproof/react-native polyfill: ${polyfill}`);
 };
 

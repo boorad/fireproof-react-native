@@ -18,7 +18,7 @@
     "react-native": "0.73.7",
     "react-native-fast-encoder": "^0.1.12",
     "react-native-mmkv": "<3",
-    "react-native-quick-crypto": "0.7.1",
+    "react-native-quick-crypto": "margelo/react-native-quick-crypto",
     "use-fireproof": "file:../../fireproof/dist/use-fireproof/use-fireproof-0.0.0-dev.tgz"
   },
   "devDependencies": {
