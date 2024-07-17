@@ -1,5 +1,7 @@
 import { polyfillGlobal } from './PolyfillFunctions';
 
+import 'react-native-url-polyfill/auto';
+
 // React-Native polyfills for Fireproof
 const log = (polyfill: string) => {
   console.info(`@fireproof/react-native polyfill: ${polyfill}`);
@@ -27,6 +29,12 @@ polyfillGlobal('Event', () => Event);
 log('event');
 
 // stream
-import { Stream } from 'readable-stream';
-polyfillGlobal('stream', () => Stream);
-log('stream');
+import {WritableStream} from 'web-streams-polyfill';
+polyfillGlobal('WritableStream', () => WritableStream);
+if (WritableStream) {
+  log('writable-stream');
+}
+
+export default {
+  Hello: 'World',
+}

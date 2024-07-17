@@ -4,14 +4,16 @@ import {
   exception2Result,
   exceptionWrapper,
   getKey,
-} from '@fireproof/core';
-import { Logger, Result } from "@adviser/cement";
+  Logger,
+  Result
+} from 'use-fireproof';
 import { MMKV } from 'react-native-mmkv';
 import { MMKVDB_VERSION } from './store-mmkv-version';
 
 export const registerMMKVStore = () => {
   bs.registerStoreProtocol({
     protocol: 'mmkv',
+    overrideBaseURL: "mmkv://fireproof",
     data: async (logger: Logger) => {
       return new MMKVDataGateway(logger);
     },
@@ -39,11 +41,11 @@ export const getMMKVDBName = (iurl: URL): string => {
 }
 
 export abstract class MMKVGateway implements bs.Gateway {
-  store: MMKV;
+  store?: MMKV;
 
   constructor(readonly logger: Logger) {}
 
-  abstract buildUrl(baseUrl: URL, key: string): Promise<Result<URL, Error>>;
+  abstract buildUrl(baseUrl: URL, key: string): Promise<Result<URL>>;
 
   async start(baseUrl: URL): Promise<bs.VoidResult> {
     return exception2Result(async () => {
@@ -53,6 +55,7 @@ export abstract class MMKVGateway implements bs.Gateway {
         });
         this.logger.Debug().Url(baseUrl).Msg("starting");
       }
+      baseUrl.searchParams.set("version", baseUrl.searchParams.get("version") || "v0.1-mmkv");
       return Result.Ok(undefined);
     });
   }
@@ -63,7 +66,7 @@ export abstract class MMKVGateway implements bs.Gateway {
   }
 
   async destroy(baseUrl: URL): Promise<bs.VoidResult> {
-    this.store.clearAll();
+    this.store?.clearAll();
     this.logger.Debug().Url(baseUrl).Msg("destroying");
     return Result.Ok(undefined);
   }
@@ -72,7 +75,7 @@ export abstract class MMKVGateway implements bs.Gateway {
     return exception2Result(async () => {
       const cid = getKey(url, this.logger);
       this.logger.Debug().Url(url).Str("cid", cid).Msg("getting");
-      this.store.set(cid, body);
+      this.store?.set(cid, body);
       return Result.Ok(undefined);
     });
   }
@@ -81,7 +84,7 @@ export abstract class MMKVGateway implements bs.Gateway {
     return exceptionWrapper(async () => {
       const cid = getKey(url, this.logger);
       this.logger.Debug().Url(url).Str("cid", cid).Msg("putting");
-      const bytes = this.store.getBuffer(cid);
+      const bytes = this.store?.getBuffer(cid);
       if (!bytes) {
         return Result.Err(new bs.NotFoundError(`missing db block ${cid}`));
       }
@@ -93,7 +96,7 @@ export abstract class MMKVGateway implements bs.Gateway {
     return exception2Result(async () => {
       const cid = getKey(url, this.logger);
       this.logger.Debug().Url(url).Str("cid", cid).Msg("deleting");
-      this.store.delete(cid);
+      this.store?.delete(cid);
       return Result.Ok(undefined);
     });
   }

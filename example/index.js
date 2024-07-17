@@ -2,7 +2,7 @@
  * @format
  */
 
-import '@fireproof/react-native/polyfills';
+import '../src/polyfills.tsx';
 
 import {AppRegistry} from 'react-native';
 import App from './src/App';

@@ -7,7 +7,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {useFireproof} from '@fireproof/react-native';
+import {useFireproof} from '../../src/index';
 import TodoItem from './TodoItem';
 
 export type Todo = { text: string; date: number; completed: boolean; };
