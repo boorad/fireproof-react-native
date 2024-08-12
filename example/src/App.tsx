@@ -10,7 +10,7 @@ import {SafeAreaView, StatusBar, useColorScheme, View} from 'react-native';
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import TodoList from './TodoList';
 
-const App = () => {
+function App() {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -31,6 +31,6 @@ const App = () => {
       </View>
     </SafeAreaView>
   );
-};
+}
 
 export default App;

@@ -9,10 +9,6 @@ React Native bindings for Fireproof
       pnpm add @fireproof/react-native react-native-quick-crypto react-native-mmkv react-native-fast-encoder
       pnpm pods
 
-* Install polyfills as early as possible in your application (`index.js` or `App.tsx`)
-
-      import '@fireproof/react-native/polyfills';
-
 ## Development
 
 To develop your application, run

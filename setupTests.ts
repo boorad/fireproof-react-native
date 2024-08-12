@@ -1,10 +1,10 @@
-import randomBytes from 'randombytes';
+import QuickCrypto from 'react-native-quick-crypto';
 import { TextEncoder } from 'util';
 
 global.TextEncoder = TextEncoder;
 
 const crypto = {
-  getRandomValues: (arr: unknown[]) => randomBytes(arr.length),
+  getRandomValues: (arr: unknown[]) => QuickCrypto.randomBytes(arr.length),
   subtle: {
     encrypt: () => Promise.resolve(new ArrayBuffer(10)),
     digest: () => Promise.resolve(''),

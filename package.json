@@ -5,10 +5,10 @@
   "author": "Brad Anderson",
   "license": "Apache-2.0 OR MIT",
   "type": "module",
-  "module": "src/index.tsx",
-  "main": "src/index.tsx",
-  "react-native": "src/index.tsx",
-  "types": "src/index.tsx",
+  "module": "src/index.ts",
+  "main": "src/index.ts",
+  "react-native": "src/index.ts",
+  "types": "src/index.ts",
   "homepage": "https://github.com/boorad/fireproof-react-native",
   "keywords": [
     "react-native",
@@ -29,11 +29,10 @@
   ],
   "exports": {
     ".": {
-      "import": "./src/index.tsx",
-      "types": "./src/index.tsx",
-      "default": "./src/index.tsx"
-    },
-    "./polyfills": "./src/polyfills.tsx"
+      "import": "./src/index.ts",
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
   },
   "scripts": {
     "prepublishOnly": "cp ../../README.md . && npm run build",
@@ -50,30 +49,32 @@
   },
   "gptdoc": "Fireproof/React Native/Usage: import { useLiveQuery, useDocument } from 'use-fireproof'; function App() { const result = useLiveQuery(doc => doc.word, { limit: 10 }); const [{ count }, setDoc, saveDoc] = useDocument({_id: 'count', count: 0}); return (<><p>{count} changes</p><input type='text' onChange={() => saveDoc({count: count + 1})} onSubmit={e => useLiveQuery.database.put({word: e.target.value})} /><ul>{result.map(row => (<li key={row.id}>{row.key}</li>))}</ul></>)}",
   "dependencies": {
-    "@adviser/cement": "^0.2.2",
+    "@adviser/cement": "0.2.12",
     "@craftzdog/react-native-buffer": "^6.0.5",
     "@ipld/dag-json": "^10.1.2",
     "@swc/core": "^1.6.13",
     "event-target-shim": "^6.0.2",
     "react-native-fast-encoder": "^0.1.12",
     "react-native-mmkv": "<3",
-    "react-native-quick-crypto": "margelo/react-native-quick-crypto",
+    "react-native-quick-crypto": "^0.7.3",
     "react-native-url-polyfill": "^2.0.0",
     "tsup": "^8.1.1",
     "use-fireproof": "file:../fireproof/dist/use-fireproof/use-fireproof-0.0.0-smoke.tgz",
     "web-streams-polyfill": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.24.8",
+    "@babel/runtime": "^7.20.0",
+    "@eslint/compat": "^1.1.1",
+    "@eslint/js": "10.0.0",
     "@testing-library/react": "^14.1.2",
     "@types/react": "^18.2.48",
     "@types/readable-stream": "^4.0.11",
-    "eslint": "^8.56.0",
+    "eslint": "9.9.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^12.1.0",
-    "prettier": "^3.2.5",
-    "randombytes": "^2.1.0",
-    "typescript": "^5.4.5"
+    "prettier": "3.3.3",
+    "typescript": "5.5.4",
+    "typescript-eslint": "^8.0.1"
   }
 }

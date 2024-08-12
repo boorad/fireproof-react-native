@@ -17,6 +17,7 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "strict": true,
+    "composite": true
   },
   "include": ["src"],
   "exclude": ["coverage", "dist", "node_modules"],
